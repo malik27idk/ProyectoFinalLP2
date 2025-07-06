@@ -33,9 +33,13 @@
                     <a th:href="@{/admin/productos/editar/{id}(id=${prod.id})}" class="btn btn-warning btn-sm">✏️</a>
                     <a th:href="@{/admin/productos/eliminar/{id}(id=${prod.id})}" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar producto?')">🗑️</a>
                 </td>
+				
             </tr>
         </tbody>
     </table>
+	<div class="d-flex justify-content-between mt-4">
+		<a th:href="@{/}" class="btn btn-secondary">← Volver al inicio</a>
+	</div>
 
 </body>
 </html>

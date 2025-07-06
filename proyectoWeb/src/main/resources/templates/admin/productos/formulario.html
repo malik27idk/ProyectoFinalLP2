@@ -10,7 +10,7 @@
 <div class="container mt-5">
     <div class="card shadow-sm">
         <div class="card-body">
-            <h3 th:text="${producto.id == null ? '➕ Nuevo Producto' : '✏️ Editar Producto'}"></h3>
+            <h3 th:text="${producto.id == null ? '➕ Nuevo Producto' : '✏ Editar Producto'}"></h3>
 
             <form th:action="@{/admin/productos/guardar}" method="post" th:object="${producto}" enctype="multipart/form-data">
                 <input type="hidden" th:field="*{id}"/>
@@ -37,9 +37,9 @@
 
                 <div class="mb-3">
                     <label>Estado</label>
-                    <select th:field="*{estado}" class="form-control">
-                        <option value="ACTIVO">ACTIVO</option>
-                        <option value="INACTIVO">INACTIVO</option>
+                    <select th:field="*{estado}" class="form-control" required>
+                        <option th:value="A" th:selected="${producto.estado == 'A'}">Activo</option>
+                        <option th:value="I" th:selected="${producto.estado == 'I'}">Inactivo</option>
                     </select>
                 </div>
 
@@ -63,7 +63,10 @@
                 </div>
 
                 <div class="d-flex justify-content-between mt-4">
-                    <a th:href="@{/admin/productos}" class="btn btn-secondary">← Volver</a>
+                    <div>
+                        <a th:href="@{/admin/productos}" class="btn btn-secondary">← Volver</a>
+                        <a th:href="@{/admin/productos}" class="btn btn-outline-secondary ms-2">🏷 Lista de Productos</a>
+                    </div>
                     <button type="submit" class="btn btn-primary">💾 Guardar</button>
                 </div>
             </form>
