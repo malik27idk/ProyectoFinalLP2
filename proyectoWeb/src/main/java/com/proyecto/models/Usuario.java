@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+
+
 @Table(name = "usuarios")
 public class Usuario {
 
