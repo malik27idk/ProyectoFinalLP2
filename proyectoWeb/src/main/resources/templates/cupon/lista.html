@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Cupones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">🎟️ Cupones registrados</h2>
+
+    <div class="mb-3 text-end">
+        <a th:href="@{/admin/cupones/nuevo}" class="btn btn-primary">+ Nuevo cupón</a>
+    </div>
+
+    <table class="table table-striped table-bordered align-middle text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Código</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Monto mínimo</th>
+                <th>Fecha válida</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cupon : ${cupones}">
+                <td th:text="${cupon.codigo}"></td>
+                <td th:text="${cupon.tipo == 'P' ? 'Porcentaje' : 'Monto fijo'}"></td>
+                <td th:text="${cupon.valor}"></td>
+                <td th:text="${cupon.montoMinimo != null ? cupon.montoMinimo : '-'}"></td>
+                <td>
+                    <span th:text="${cupon.fechaInicio}"></span> a 
+                    <span th:text="${cupon.fechaFin}"></span>
+                </td>
+                <td th:text="${cupon.estado == '1' ? 'Activo' : 'Inactivo'}"
+                    th:classappend="${cupon.estado == '1' ? 'text-success' : 'text-danger'}"></td>
+                <td>
+                    <a th:href="@{'/admin/cupones/eliminar/' + ${cupon.id}}" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a href="/" class="btn btn-outline-secondary">← Volver al inicio</a>
+    </div>
+</div>
+
+</body>
+</html>
